@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiago Ventas</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.logo{
+    position:fixed;
+    top:10px;
+    left:15px;
+    font-weight:bold;
+    font-size:20px;
+    color:#38bdf8;
+}
+
+h1{
+    text-align:center;
+    margin-top:60px;
+}
+
+.container{
+    width:90%;
+    max-width:500px;
+    margin:20px auto;
+}
+
+.card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.price{
+    color:orange;
+    font-weight:bold;
+    font-size:20px;
+}
+
+button{
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    border:none;
+    background:orange;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-box{
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    width:90%;
+    max-width:350px;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin-top:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo">💎 Thiago Ventas</div>
+
+<h1>Área de Revendedores</h1>
+
+<div class="container">
+
+<div class="card">
+<h3>110 💎</h3>
+<div class="price">$1250 ARS</div>
+<button onclick="abrir('110 💎','1250')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>342 💎</h3>
+<div class="price">$3850 ARS</div>
+<button onclick="abrir('342 💎','3850')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>572 💎</h3>
+<div class="price">$6200 ARS</div>
+<button onclick="abrir('572 💎','6200')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>1166 💎</h3>
+<div class="price">$12500 ARS</div>
+<button onclick="abrir('1166 💎','12500')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>2398 💎</h3>
+<div class="price">$21800 ARS</div>
+<button onclick="abrir('2398 💎','21800')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>6160 💎</h3>
+<div class="price">$52000 ARS</div>
+<button onclick="abrir('6160 💎','52000')">Comprar</button>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<h3 id="info"></h3>
+
+<input type="text" id="idJugador" placeholder="ID del jugador">
+
+<select id="metodo">
+<option value="">Método de pago</option>
+<option>Transferencia</option>
+<option>Mercado Pago</option>
+<option>USDT</option>
+</select>
+
+<button onclick="enviar()">Enviar Pedido</button>
+<button onclick="cerrar()" style="background:red;margin-top:5px;">Cancelar</button>
+
+</div>
+</div>
+
+<script>
+let producto="";
+let precio="";
+
+function abrir(p, pr){
+producto=p;
+precio=pr;
+document.getElementById("info").innerHTML=
+"Producto: "+p+"<br>Precio: $"+pr+" ARS";
+document.getElementById("modal").style.display="flex";
+}
+
+function cerrar(){
+document.getElementById("modal").style.display="none";
+}
+
+function enviar(){
+let id=document.getElementById("idJugador").value;
+let metodo=document.getElementById("metodo").value;
+
+if(id==""||metodo==""){
+alert("Complete todos los campos");
+return;
+}
+
+let mensaje=
+`🛒 NUEVO PEDIDO
+━━━━━━━━━━━━
+💎 ${producto}
+💵 $${precio} ARS
+🆔 ID: ${id}
+💳 Pago: ${metodo}
+━━━━━━━━━━━━`;
+
+let numero="5493435440092";
+let url="https://wa.me/"+numero+"?text="+encodeURIComponent(mensaje);
+
+window.open(url,"_blank");
+}
+</script>
+
+</body>
+</html>
