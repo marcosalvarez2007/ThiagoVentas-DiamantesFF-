@@ -8,184 +8,217 @@
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#0f172a;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg,#0c1325,#0a0f1f);
     color:white;
 }
 
 .logo{
     position:fixed;
-    top:10px;
+    top:15px;
     left:15px;
-    font-weight:bold;
-    font-size:20px;
-    color:#38bdf8;
+}
+
+.logo img{
+    width:150px;
 }
 
 h1{
     text-align:center;
-    margin-top:60px;
+    margin-top:120px;
+    font-size:40px;
+    background: linear-gradient(to right, orange, pink);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.sub{
+    text-align:center;
+    color:gray;
+    margin-bottom:30px;
 }
 
 .container{
     width:90%;
-    max-width:500px;
-    margin:20px auto;
+    max-width:600px;
+    margin:auto;
 }
 
 .card{
-    background:#1e293b;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
+    background:#141a2e;
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(255,140,0,0.2);
 }
 
 .price{
     color:orange;
+    font-size:28px;
     font-weight:bold;
-    font-size:20px;
 }
 
 button{
-    margin-top:10px;
-    padding:10px;
+    margin-top:15px;
+    padding:12px;
     width:100%;
     border:none;
+    border-radius:10px;
     background:orange;
-    border-radius:6px;
-    font-weight:bold;
+    font-size:16px;
     cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#ff9d00;
 }
 
 .modal{
     display:none;
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.7);
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
     justify-content:center;
     align-items:center;
 }
 
-.modal-box{
-    background:#1e293b;
-    padding:20px;
-    border-radius:10px;
+.modal-content{
+    background:#141a2e;
+    padding:25px;
+    border-radius:15px;
     width:90%;
-    max-width:350px;
+    max-width:400px;
 }
 
 input, select{
     width:100%;
-    padding:8px;
-    margin-top:8px;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    border:none;
+}
+
+.close{
+    text-align:right;
+    cursor:pointer;
+    color:red;
+    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="logo">💎 Thiago Ventas</div>
+<div class="logo">
+    <img src="logo.png" alt="Logo">
+</div>
 
 <h1>Área de Revendedores</h1>
+<div class="sub">Precios exclusivos – Stock disponible</div>
 
 <div class="container">
 
-<div class="card">
-<h3>110 💎</h3>
-<div class="price">$1250 ARS</div>
-<button onclick="abrir('110 💎','1250')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>110 💎</h2>
+        <div class="price">$1250 ARS</div>
+        <button onclick="abrirModal('110 💎','1250')">Comprar</button>
+    </div>
 
-<div class="card">
-<h3>342 💎</h3>
-<div class="price">$3850 ARS</div>
-<button onclick="abrir('342 💎','3850')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>342 💎</h2>
+        <div class="price">$3850 ARS</div>
+        <button onclick="abrirModal('342 💎','3850')">Comprar</button>
+    </div>
 
-<div class="card">
-<h3>572 💎</h3>
-<div class="price">$6200 ARS</div>
-<button onclick="abrir('572 💎','6200')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>572 💎</h2>
+        <div class="price">$6200 ARS</div>
+        <button onclick="abrirModal('572 💎','6200')">Comprar</button>
+    </div>
 
-<div class="card">
-<h3>1166 💎</h3>
-<div class="price">$12500 ARS</div>
-<button onclick="abrir('1166 💎','12500')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>1166 💎</h2>
+        <div class="price">$12500 ARS</div>
+        <button onclick="abrirModal('1166 💎','12500')">Comprar</button>
+    </div>
 
-<div class="card">
-<h3>2398 💎</h3>
-<div class="price">$21800 ARS</div>
-<button onclick="abrir('2398 💎','21800')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>2398 💎</h2>
+        <div class="price">$21800 ARS</div>
+        <button onclick="abrirModal('2398 💎','21800')">Comprar</button>
+    </div>
 
-<div class="card">
-<h3>6160 💎</h3>
-<div class="price">$52000 ARS</div>
-<button onclick="abrir('6160 💎','52000')">Comprar</button>
-</div>
+    <div class="card">
+        <h2>6160 💎</h2>
+        <div class="price">$52000 ARS</div>
+        <button onclick="abrirModal('6160 💎','52000')">Comprar</button>
+    </div>
 
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-<div class="modal-box">
-<h3 id="info"></h3>
+    <div class="modal-content">
+        <div class="close" onclick="cerrarModal()">X</div>
+        <h3>Finalizar Pedido</h3>
 
-<input type="text" id="idJugador" placeholder="ID del jugador">
+        <p id="productoSeleccionado"></p>
 
-<select id="metodo">
-<option value="">Método de pago</option>
-<option>Transferencia</option>
-<option>Mercado Pago</option>
-<option>USDT</option>
-</select>
+        <input type="text" id="playerID" placeholder="Ingrese ID del jugador">
 
-<button onclick="enviar()">Enviar Pedido</button>
-<button onclick="cerrar()" style="background:red;margin-top:5px;">Cancelar</button>
+        <select id="metodoPago">
+            <option value="">Seleccione método de pago</option>
+            <option>Transferencia</option>
+            <option>Mercado Pago</option>
+            <option>USDT</option>
+        </select>
 
-</div>
+        <button onclick="enviarPedido()">Enviar Pedido</button>
+    </div>
 </div>
 
 <script>
-let producto="";
-let precio="";
+let producto = "";
+let precio = "";
 
-function abrir(p, pr){
-producto=p;
-precio=pr;
-document.getElementById("info").innerHTML=
-"Producto: "+p+"<br>Precio: $"+pr+" ARS";
-document.getElementById("modal").style.display="flex";
+function abrirModal(prod, pre){
+    producto = prod;
+    precio = pre;
+    document.getElementById("productoSeleccionado").innerHTML =
+        `<strong>Producto:</strong> ${prod} <br><strong>Precio:</strong> $${pre} ARS`;
+    document.getElementById("modal").style.display="flex";
 }
 
-function cerrar(){
-document.getElementById("modal").style.display="none";
+function cerrarModal(){
+    document.getElementById("modal").style.display="none";
 }
 
-function enviar(){
-let id=document.getElementById("idJugador").value;
-let metodo=document.getElementById("metodo").value;
+function enviarPedido(){
+    let id = document.getElementById("playerID").value;
+    let metodo = document.getElementById("metodoPago").value;
 
-if(id==""||metodo==""){
-alert("Complete todos los campos");
-return;
-}
+    if(id === "" || metodo === ""){
+        alert("Complete todos los campos");
+        return;
+    }
 
-let mensaje=
-`🛒 NUEVO PEDIDO
-━━━━━━━━━━━━
-💎 ${producto}
-💵 $${precio} ARS
-🆔 ID: ${id}
-💳 Pago: ${metodo}
-━━━━━━━━━━━━`;
+    let mensaje =
+`🛒 *NUEVO PEDIDO*
+━━━━━━━━━━━━━━
+💎 Producto: ${producto}
+💵 Precio: $${precio} ARS
+🆔 ID Jugador: ${id}
+💳 Método de Pago: ${metodo}
+━━━━━━━━━━━━━━`;
 
-let numero="5493435440092";
-let url="https://wa.me/"+numero+"?text="+encodeURIComponent(mensaje);
+    let numero = "5493435440092";
+    let url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje);
 
-window.open(url,"_blank");
+    window.open(url, '_blank');
 }
 </script>
 
