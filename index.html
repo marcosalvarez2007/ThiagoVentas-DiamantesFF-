@@ -13,19 +13,28 @@ body{
     color:white;
 }
 
+/* LOGO CENTRADO CON ANIMACIÓN SUAVE */
 .logo{
-    position:fixed;
-    top:15px;
-    left:15px;
+    text-align:center;
+    margin-top:30px;
+    animation: float 4s ease-in-out infinite;
 }
 
 .logo img{
     width:150px;
+    max-width:80%;
+}
+
+/* Animación suave flotante */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
 }
 
 h1{
     text-align:center;
-    margin-top:120px;
+    margin-top:20px;
     font-size:40px;
     background: linear-gradient(to right, orange, pink);
     -webkit-background-clip:text;
@@ -50,6 +59,12 @@ h1{
     border-radius:20px;
     margin-bottom:20px;
     box-shadow:0 0 15px rgba(255,140,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform: scale(1.03);
+    box-shadow:0 0 25px rgba(255,140,0,0.5);
 }
 
 .price{
@@ -68,10 +83,12 @@ button{
     font-size:16px;
     cursor:pointer;
     font-weight:bold;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover{
     background:#ff9d00;
+    transform: scale(1.02);
 }
 
 .modal{
@@ -92,6 +109,12 @@ button:hover{
     border-radius:15px;
     width:90%;
     max-width:400px;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from { transform: scale(0.8); opacity:0; }
+    to { transform: scale(1); opacity:1; }
 }
 
 input, select{
@@ -117,7 +140,7 @@ input, select{
     <img src="logo.png" alt="Logo">
 </div>
 
-<h1>Área de Revendedores</h1>
+<h1>Área de Compra</h1>
 <div class="sub">Precios exclusivos – Stock disponible</div>
 
 <div class="container">
